@@ -7,6 +7,7 @@ namespace jemgine
 	Time g_time;
 	AudioSystem g_audioSystem;
 	ResourceManager g_resources;
+	PhysicsSystem g_physicsSystem;
 	void Engine::Register()
 	{
 		REGISTER_CLASS(Actor);
@@ -15,5 +16,6 @@ namespace jemgine
 		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(PlayerComponent);
 		REGISTER_CLASS(SpriteComponent);
+		REGISTER_CLASS(SpriteAnimComponent);
 	}
 }

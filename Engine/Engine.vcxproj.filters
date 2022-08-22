@@ -33,6 +33,12 @@
     <Filter Include="Source\Resource">
       <UniqueIdentifier>{6ad72b19-1dd3-435a-af10-e091569f1fd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Serialization">
+      <UniqueIdentifier>{e22acb67-c5cb-413c-b264-097c0c433924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Physics">
+      <UniqueIdentifier>{9df672d3-f436-4d21-85c6-4763e1d6dfa5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -109,6 +115,18 @@
     </ClCompile>
     <ClCompile Include="Resource\ResourceManager.cpp">
       <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\Json.cpp">
+      <Filter>Source\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsSystem.cpp">
+      <Filter>Source\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +234,21 @@
     </ClInclude>
     <ClInclude Include="Framework\Factory.h">
       <Filter>Source\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\Json.h">
+      <Filter>Source\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\Serialzable.h">
+      <Filter>Source\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsSystem.h">
+      <Filter>Source\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

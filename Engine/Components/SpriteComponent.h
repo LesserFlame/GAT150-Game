@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "Math/Rect.h"
 
 namespace jemgine
 {
@@ -9,7 +10,12 @@ namespace jemgine
 	public: 
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
+
+		// Inherited via RenderComponent
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 	public:
+		Rect source;
 		std::shared_ptr<Texture> m_texture;
 	};
 }

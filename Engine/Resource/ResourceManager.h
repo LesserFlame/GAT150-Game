@@ -15,14 +15,14 @@ namespace jemgine
 		void Initialize();
 		void Shutdown();
 
-		template <typename T>
-		std::shared_ptr<T> Get(const std::string& name, void* data = nullptr);
+		template <typename T, typename ... TArgs>
+		std::shared_ptr<T> Get(const std::string& name, TArgs... args);
 
 	private:
 		std::map<std::string, std::shared_ptr<Resource>> m_resources;
 	};
-	template<typename T>
-	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, void* data)
+	template<typename T, typename ... TArgs>
+	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, TArgs... args)
 	{
 		if (m_resources.find(name) != m_resources.end())
 		{
@@ -33,8 +33,9 @@ namespace jemgine
 		{
 			//not found, create resource and enter into resources
 			std::shared_ptr<T> resource = std::make_shared<T>();
+			resource->Create(name, args...);
 			m_resources[name] = resource;
-			resource->Create(name, data);
+
 			return resource;
 		}
 	}

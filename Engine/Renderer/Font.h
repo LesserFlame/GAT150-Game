@@ -15,7 +15,7 @@ namespace jemgine
 		~Font();
 
 
-		bool Create(const std::string& filename, void* data = nullptr) override;
+		bool Create(std::string filename, ...) override;
 		void Load(const std::string& filename, int fontSize);
 
 		friend class Text;

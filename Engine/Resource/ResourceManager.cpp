@@ -8,5 +8,6 @@ namespace jemgine
 
 	void ResourceManager::Shutdown()
 	{
+		m_resources.clear();
 	}
 }

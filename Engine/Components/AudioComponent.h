@@ -16,5 +16,9 @@ namespace jemgine
 		float m_volume = 1.0f;
 		float m_pitch = 1.0f;
 		bool m_loop = false;
+
+		// Inherited via Component
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 	};
 }

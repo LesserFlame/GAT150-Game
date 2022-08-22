@@ -1,10 +1,14 @@
 #pragma once
+#include "Serialization/Json.h"
+
 #include "Core/Memory.h"
 #include "Core/File.h"
 #include "Core/Time.h"
 
 #include "Math/MathUtils.h"
 #include "Math/Random.h"
+
+#include "Physics/PhysicsSystem.h"
 
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
@@ -13,6 +17,7 @@
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/SpriteAnimComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/ModelComponent.h"
@@ -37,6 +42,7 @@ namespace jemgine
 	extern Time g_time;
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
+	extern PhysicsSystem g_physicsSystem;
 
 	class Engine : public Singleton<Engine>
 	{

@@ -18,7 +18,7 @@ void jemgine::PlayerComponent::Update()
 	float  thrust = 0;
 	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 	{
-		thrust = 500;
+		thrust = speed;
 	}
 	//std::cout << m_owner->m_transform.position.x <<  " " << m_owner->m_transform.position.y << std::endl;
 	auto component = m_owner->GetComponent<PhysicsComponent>();
@@ -28,8 +28,8 @@ void jemgine::PlayerComponent::Update()
 		component->ApplyForce(force);
 
 		//gravitational force
-		force = (Vector2{ 400, 300 } - m_owner->m_transform.position).Normalized() * 60.0f;
-		component->ApplyForce(force);
+		//force = (Vector2{ 400, 300 } - m_owner->m_transform.position).Normalized() * 60.0f;
+		//component->ApplyForce(force);
 	}
 
 	/*if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
@@ -51,4 +51,15 @@ void jemgine::PlayerComponent::Update()
 			component->Play();
 		}
 	}
+}
+
+bool jemgine::PlayerComponent::Write(const rapidjson::Value& value) const
+{
+	return true;
+}
+
+bool jemgine::PlayerComponent::Read(const rapidjson::Value& value)
+{
+	READ_DATA(value, speed);
+	return true;
 }
