@@ -50,24 +50,26 @@ namespace jemgine
 		}
 	}
 
-	void AudioSystem::PlayAudio(const std::string& name, bool loop)
+	AudioChannel AudioSystem::PlayAudio(const std::string& name, float volume, float pitch, bool loop)
  	{
 		auto iter = m_sounds.find(name); // !! use find() on m_sounds and return the iterator 
 
 		if (iter == m_sounds.end())
 		{
 			LOG("Error sound not found: %s.", name.c_str());
+			return AudioChannel{};
 		}
 
-		if (iter != m_sounds.end()) // !! if iterator is not m_sounds.end() 
-		{
-			FMOD::Sound* sound = iter->second;
-			if (loop) sound->setMode(FMOD_LOOP_NORMAL);
-			else sound->setMode(FMOD_LOOP_OFF);
+		FMOD::Sound* sound = iter->second;
+		FMOD_MODE mode = (loop) ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
+		sound->setMode(mode);
 
-			FMOD::Channel* channel;
-			m_fmodSystem->playSound(sound, 0, false, &channel);
-		}
+		FMOD::Channel* channel;
+		m_fmodSystem->playSound(sound, 0, false, &channel);
+		channel->setVolume(volume);
+		channel->setPitch(pitch);
+		channel->setPaused(false);
 
+		return AudioChannel{ channel };
 	}
 }

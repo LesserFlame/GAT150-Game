@@ -8,6 +8,8 @@ namespace jemgine
 	class SpriteComponent : public RenderComponent
 	{
 	public: 
+		CLASS_DECLARATION(SpriteComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 

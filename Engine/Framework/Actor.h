@@ -13,8 +13,14 @@ namespace jemgine
 	{
 	public:
 		Actor() = default;
+		Actor(const Actor& other);
 		Actor(const Transform& transform) : m_transform{ transform } {}
 
+		CLASS_DECLARATION(Actor)
+
+		//std::unique_ptr<GameObject> Clone() override { return std::make_unique<Actor>(*this); }
+
+		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
 
@@ -35,6 +41,13 @@ namespace jemgine
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
 
+		void SetDestroy() { destroy = true; }
+
+		void SetActive(bool active = true) { this->active = active; }
+		bool IsActive() { return active; }
+
+		Scene* GetScene() { return m_scene; }
+
 		friend class Scene;
 
 		Transform m_transform;
@@ -42,7 +55,8 @@ namespace jemgine
 		std::string name;
 		std::string tag;
 
-		bool m_destroy = false;
+		bool active = true;
+		bool destroy = false;
 		//physics
 		Vector2 m_velocity;
 		float m_damping = 1;

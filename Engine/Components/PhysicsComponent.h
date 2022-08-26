@@ -7,9 +7,13 @@ namespace jemgine
 	{
 	public:
 		PhysicsComponent() = default;
-		void Update() override;
-		void ApplyForce(const Vector2& force) { acceleration += force; };
+		CLASS_DECLARATION(PhysicsComponent)
 
+		void Update() override;
+		virtual void ApplyForce(const Vector2& force) { acceleration += force; };
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 	public:
 		Vector2 velocity;
 		Vector2 acceleration;
@@ -17,7 +21,5 @@ namespace jemgine
 		float damping = 1;
 
 		// Inherited via Component
-		virtual bool Write(const rapidjson::Value& value) const override;
-		virtual bool Read(const rapidjson::Value& value) override;
 	};
 }

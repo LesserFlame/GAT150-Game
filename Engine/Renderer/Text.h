@@ -1,6 +1,7 @@
 #pragma once
 // !! add necessary includes 
 #include <string>
+#include <memory>
 
 // !! forward declare the SDL_Texture struct 
 

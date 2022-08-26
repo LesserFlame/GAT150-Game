@@ -1,57 +1,49 @@
 #include "PlayerComponent.h"
 #include "Engine.h"
 #include <iostream>
+
+namespace jemgine
+{
+
+}
+void jemgine::PlayerComponent::Initialize()
+{
+	auto component = m_owner->GetComponent<CollisionComponent>();
+	if (component)
+	{
+		component->SetCollisionEnter(std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1));
+		component->SetCollisionExit(std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1));
+	}
+}
 void jemgine::PlayerComponent::Update()
 {
 	Vector2 direction = Vector2::zero;
 	//update transform with input
 	if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)
 	{
-		m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
-		//direction = Vector2::left;
+		direction = Vector2::left;
 	}
 	if (g_inputSystem.GetKeyState(key_d) == InputSystem::State::Held)
 	{
-		m_owner->m_transform.rotation += 180 * g_time.deltaTime;
-		//direction = Vector2::right;
+		direction = Vector2::right;
 	}
-	float  thrust = 0;
-	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
-	{
-		thrust = speed;
-	}
-	//std::cout << m_owner->m_transform.position.x <<  " " << m_owner->m_transform.position.y << std::endl;
+
 	auto component = m_owner->GetComponent<PhysicsComponent>();
 	if (component)
 	{
-		Vector2 force = Vector2::Rotate({ 1, 0 }, jemgine::DegToRad(m_owner->m_transform.rotation)) * thrust;
-		component->ApplyForce(force);
-
-		//gravitational force
-		//force = (Vector2{ 400, 300 } - m_owner->m_transform.position).Normalized() * 60.0f;
-		//component->ApplyForce(force);
+		component->ApplyForce(direction * speed);
 	}
-
-	/*if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
-	{
-		direction = Vector2::up;
-	}
-	if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
-	{
-		direction = Vector2::down;
-	}*/
-
-	m_owner->m_transform.position += direction * 300 * g_time.deltaTime;
 
 	if (g_inputSystem.GetKeyState(key_space) == InputSystem::State::Press)
 	{
-		auto component = m_owner->GetComponent<AudioComponent>();
+		auto component = m_owner->GetComponent<PhysicsComponent>();
 		if (component)
 		{
-			component->Play();
+			component->ApplyForce(Vector2::up * 500);
 		}
 	}
 }
+
 
 bool jemgine::PlayerComponent::Write(const rapidjson::Value& value) const
 {
@@ -62,4 +54,14 @@ bool jemgine::PlayerComponent::Read(const rapidjson::Value& value)
 {
 	READ_DATA(value, speed);
 	return true;
+}
+
+void jemgine::PlayerComponent::OnCollisionEnter(Actor* other)
+{
+	std::cout << "player enter\n";
+}
+
+void jemgine::PlayerComponent::OnCollisionExit(Actor* other)
+{
+	std::cout << "player exit\n";
 }

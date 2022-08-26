@@ -5,6 +5,7 @@
 
 // !! forward declaration for SDL pointers below (SDL likes to use structs) 
 struct SDL_Texture;
+struct SDL_Surface;
 // !! add namespace 
 namespace jemgine
 {
@@ -18,6 +19,8 @@ namespace jemgine
 
 		bool Create(std::string filename, ...) override;
 		bool Create(Renderer& renderer, const std::string& filename);
+
+		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
 		Vector2 GetSize() const;
 

@@ -4,6 +4,7 @@
 #include "Core/Memory.h"
 #include "Core/File.h"
 #include "Core/Time.h"
+#include "Core/Logger.h"
 
 #include "Math/MathUtils.h"
 #include "Math/Random.h"
@@ -18,9 +19,13 @@
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/SpriteAnimComponent.h"
+#include "Components/CollisionComponent.h"
 #include "Components/PhysicsComponent.h"
+#include "Components/RBPhysicsComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/ModelComponent.h"
+#include "Components/TextComponent.h"
+#include "Components/TilemapComponent.h"
 
 #include "Input/InputSystem.h"
 

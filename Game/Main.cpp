@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Jemgame.h"
 #include <iostream>
 
 int main()
@@ -23,12 +24,10 @@ int main()
 	std::cout << "HEY EVERY       !\nIT'S ME, SPAMTON G. SPAMTON!" << std::endl;
 
 	//create scene
-	jemgine::Scene scene;
+	std::unique_ptr<Jemgame> game = std::make_unique<Jemgame>();
+	game->Initialize();
+	
 
-	rapidjson::Document document;
-	bool success = jemgine::json::Load("level.txt", document);
-
-	scene.Read(document);
 
 	bool quit = false;
 	while (!quit)
@@ -43,17 +42,26 @@ int main()
 
 		//update game objects
 
-		scene.Update();
+		game->Update();
 
 		//render
 		jemgine::g_renderer.BeginFrame();
 
-		scene.Draw(jemgine::g_renderer);
+		game->Draw(jemgine::g_renderer);
 		//jemgine::g_renderer.Draw(texture, { 200, 150 }, angle, { 1, 1 }, {0.5f, 1.0f});
 
 		jemgine::g_renderer.EndFrame();
 	}
+
+	game->Shutdown();
+	game.reset();
+
+	jemgine::Factory::Instance().Shutdown();
+
+	jemgine::g_physicsSystem.Shutdown();
+	jemgine::g_resources.Shutdown();
+	jemgine::g_inputSystem.Shutdown();
+	jemgine::g_audioSystem.Shutdown();
 	jemgine::g_renderer.Shutdown();
 
-	jemgine::g_audioSystem.Shutdown();
 }
