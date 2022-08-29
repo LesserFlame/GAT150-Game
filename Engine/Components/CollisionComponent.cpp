@@ -9,6 +9,14 @@ namespace jemgine
         auto component = m_owner->GetComponent<RBPhysicsComponent>();
         if (component)
         {
+            if (data.size.x == 0 && data.size.y == 0)
+            {
+                auto renderComponent = m_owner->GetComponent<RenderComponent>();
+                if (renderComponent)
+                {
+                    data.size = Vector2{ renderComponent->GetSource().w, renderComponent->GetSource().h };
+                }
+            }
             g_physicsSystem.SetCollisionBox(component->m_body, data, m_owner);
         }
     }

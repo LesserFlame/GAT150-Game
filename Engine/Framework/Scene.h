@@ -37,6 +37,12 @@ namespace jemgine
 		template<typename T>
 		T* GetActor();
 
+		template<typename T = Actor>
+		T* GetActorFromName(const std::string& name);
+
+		template<typename T = Actor>
+		std::vector<T*> GetActorsFromTag(const std::string& tag);
+
 		Game* GetGame() { return m_game; }
 	private:
 		Game* m_game;
@@ -53,5 +59,33 @@ namespace jemgine
 		}
 
 		return nullptr;
+	}
+	template<typename T>
+	inline T* Scene::GetActorFromName(const std::string& name)
+	{
+		for (auto& actor : m_actors)
+		{
+			if (name == actor->GetName())
+				{
+					return dynamic_cast<T*>(actor.get());
+				}
+		}
+
+		return nullptr;
+	}
+	template<typename T>
+	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& tag)
+	{
+		std::vector<T*> result;
+
+		for (auto& actor : m_actors)
+		{
+			if (actor.name == actor->GetName())
+				{
+				 T * tagActor = dynamic_cast<T*>(actor.get());
+				 if (tagActor) result.push_back(tagActor);
+				}
+		}
+		return result;
 	}
 }

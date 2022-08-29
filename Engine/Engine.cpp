@@ -8,6 +8,8 @@ namespace jemgine
 	AudioSystem g_audioSystem;
 	ResourceManager g_resources;
 	PhysicsSystem g_physicsSystem;
+	EventManager g_eventmanager;
+
 	void Engine::Register()
 	{
 		REGISTER_CLASS(Actor);

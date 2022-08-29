@@ -42,6 +42,7 @@ namespace jemgine
 		void SetName(const std::string& name) { this->name = name; }
 
 		void SetDestroy() { destroy = true; }
+		bool IsDestroyed() { return destroy; }
 
 		void SetActive(bool active = true) { this->active = active; }
 		bool IsActive() { return active; }

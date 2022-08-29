@@ -16,6 +16,7 @@ int main()
 	jemgine::g_audioSystem.Initialize();
 	jemgine::g_resources.Initialize();
 	jemgine::g_physicsSystem.Initialize();
+	jemgine::g_eventmanager.Initialize();
 
 	jemgine::Engine::Instance().Register();
 
@@ -37,6 +38,7 @@ int main()
 		jemgine::g_inputSystem.Update();
 		jemgine::g_audioSystem.Update();
 		jemgine::g_physicsSystem.Update();
+		jemgine::g_eventmanager.Update();
 
 		if (jemgine::g_inputSystem.GetKeyDown(jemgine::key_escape)) quit = true;
 
@@ -58,10 +60,12 @@ int main()
 
 	jemgine::Factory::Instance().Shutdown();
 
+	jemgine::g_eventmanager.Shutdown();
 	jemgine::g_physicsSystem.Shutdown();
 	jemgine::g_resources.Shutdown();
 	jemgine::g_inputSystem.Shutdown();
 	jemgine::g_audioSystem.Shutdown();
 	jemgine::g_renderer.Shutdown();
+
 
 }

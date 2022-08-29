@@ -59,6 +59,10 @@ namespace jemgine
 		Vector2 Normalized();
 		inline void Normalize();
 
+		float Dot(const Vector2& v);
+		float GetAngleBetween(const Vector2& v);
+		float GetSignedAngleBetween(const Vector2& v);
+
 		inline float GetAngle();
 		static Vector2 Rotate(const Vector2& v, float angle);
 
@@ -86,6 +90,24 @@ namespace jemgine
 	}
 
 	inline void Vector2::Normalize() { (*this) /= Length(); }
+
+	inline float Vector2::Dot(const Vector2& v)
+	{
+		return x * v.x + y * v.y;
+	}
+
+	inline float Vector2::GetAngleBetween(const Vector2& v)
+	{
+		return std::acos(Dot(v));
+	}
+
+	inline float Vector2::GetSignedAngleBetween(const Vector2& v)
+	{
+		float y = x * v.y - y * v.x; // perpendicular dot product 
+		float x = x * v.x + y * v.y; // dor product 
+
+		return std::atan2(y, x);
+	}
 
 	inline float Vector2::GetAngle() { return std::atan2(y, x); }
 	inline Vector2 Vector2::Rotate(const Vector2& v, float angle)

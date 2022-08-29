@@ -15,6 +15,7 @@
 #include "Framework/Game.h"
 #include "Framework/Singleton.h"
 #include "Framework/Factory.h"
+#include "Framework/EventManager.h"
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
@@ -39,6 +40,9 @@
 #include "Resource/ResourceManager.h"
 
 #include <memory>
+#include <variant>
+#include <vector>
+#include <list>
 
 namespace jemgine
 {
@@ -48,6 +52,7 @@ namespace jemgine
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
+	extern EventManager g_eventmanager;
 
 	class Engine : public Singleton<Engine>
 	{
