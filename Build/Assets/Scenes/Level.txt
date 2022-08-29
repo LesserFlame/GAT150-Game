@@ -17,7 +17,7 @@
          "components":[
             {
                "type":"SpriteComponent",
-               "texture_name":"Textures/background.png"
+               "texture_name":"Textures/platformer_metroidvania asset pack v1.01/tiles and background_foreground (new)/background.png"
             }
          ]
       },
@@ -56,34 +56,6 @@
       },
       {
          "type":"Actor",
-         "name":"Floor",
-         "transform":{
-            "position":[
-               400,
-               535
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "data.is_dynamic":false
-            },
-            {
-               "type":"CollisionComponent",
-               "data.size":[
-                  800,
-                  24
-               ]
-            }
-         ]
-      },
-      {
-         "type":"Actor",
          "name":"Ceiling",
          "transform":{
             "position":[
@@ -112,62 +84,6 @@
       },
       {
          "type":"Actor",
-         "name":"WallLeft",
-         "transform":{
-            "position":[
-               -24,
-               300
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "data.is_dynamic":false
-            },
-            {
-               "type":"CollisionComponent",
-               "data.size":[
-                  24,
-                  800
-               ]
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"WallRight",
-         "transform":{
-            "position":[
-               824,
-               300
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "data.is_dynamic":false
-            },
-            {
-               "type":"CollisionComponent",
-               "data.size":[
-                  24,
-                  800
-               ]
-            }
-         ]
-      },
-      {
-         "type":"Actor",
          "name":"Player",
          "tag":"Player",
          "transform":{
@@ -184,29 +100,26 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":30
+               "speed":2
             },
             {
                "type":"RBPhysicsComponent",
-               "damping":0.8,
+               "damping":1,
                "data.gravity_scale":1,
                "data.constrain_angle":true
             },
             {
                "type":"CollisionComponent",
-               "data.size":[
-                  24,
-                  36
-               ]
+               "data.friction":1
             },
             {
                "type":"SpriteAnimComponent",
-               "texture_name":"Textures/redidle.png",
+               "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_idle_anim_strip_4.png",
                "fps":12,
-               "num_columns":18,
+               "num_columns":4,
                "num_rows":1,
                "start_frame":1,
-               "end_frame":18
+               "end_frame":4
             },
             {
                "type":"AudioComponent",
@@ -239,37 +152,6 @@
                "loop":true,
                "pitch":1,
                "play_on_start":true
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"Crate",
-         "tag":"Object",
-         "transform":{
-            "position":[
-               500,
-               450
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "damping":0.8,
-               "data.gravity_scale":1,
-               "data.constrain_angle":false
-            },
-            {
-               "type":"CollisionComponent"
-            },
-            {
-               "type":"SpriteComponent",
-               "texture_name":"Textures/crate.png"
             }
          ]
       },

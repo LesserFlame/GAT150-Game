@@ -25,12 +25,41 @@
             },
             {
                "type":"SpriteAnimComponent",
-               "texture_name":"Textures/coin.png",
+               "texture_name":"Textures/platformer_metroidvania asset pack v1.01/miscellaneous sprites/coin_anim_strip_6.png",
                "fps":12,
-               "num_columns":8,
+               "num_columns":6,
                "num_rows":1,
                "start_frame":1,
-               "end_frame":8
+               "end_frame":6
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Stone",
+         "tag":"Pickup",
+         "prefab":true,
+         "transform":{
+            "position":[
+               200,
+               200
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "damping":0.8,
+               "data.gravity_scale":1,
+               "data.constrain_angle":false
+            },
+            {
+               "type":"CollisionComponent",
+               "data.restitution": 0.7
+            },
+            {
+               "type":"SpriteComponent",
+               "texture_name":"Textures/platformer_metroidvania asset pack v1.01/miscellaneous sprites/stone.png"
             }
          ]
       }

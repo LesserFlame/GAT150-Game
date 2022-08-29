@@ -6,7 +6,7 @@ void Jemgame::Initialize()
 	m_scene = std::make_unique<jemgine::Scene>();
 
 	rapidjson::Document document;
-	std::vector<std::string> sceneNames = { "Scenes/Prefabs.txt", "Scenes/tilemap.txt", "Scenes/Level.txt" };
+	std::vector<std::string> sceneNames = { "Scenes/Prefabs.txt", "Scenes/Tilemap.txt", "Scenes/Level.txt" };
 
 	for (auto sceneName : sceneNames)
 	{
@@ -46,6 +46,13 @@ void Jemgame::Update()
 		for (int i = 0; i < 10; i++)
 		{
 			auto actor = jemgine::Factory::Instance().Create<jemgine::Actor>("Coin");
+			actor->m_transform.position = { jemgine::randomf(0, 800), 100.0f };
+			actor->Initialize();
+			m_scene->Add(std::move(actor));
+		}
+		for (int i = 0; i < 20; i++)
+		{
+			auto actor = jemgine::Factory::Instance().Create<jemgine::Actor>("Stone");
 			actor->m_transform.position = { jemgine::randomf(0, 800), 100.0f };
 			actor->Initialize();
 			m_scene->Add(std::move(actor));

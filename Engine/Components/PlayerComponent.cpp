@@ -39,7 +39,7 @@ void jemgine::PlayerComponent::Update()
 		auto component = m_owner->GetComponent<PhysicsComponent>();
 		if (component)
 		{
-			component->ApplyForce(Vector2::up * 500);
+			component->ApplyForce(Vector2::up * 30);
 		}
 	}
 }
