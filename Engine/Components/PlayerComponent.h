@@ -1,9 +1,11 @@
 #pragma once
 #include "Framework/Component.h"
 #include "Physics/Collision.h"
+#include "CharacterComponent.h"
+
 namespace jemgine
 {
-	class PlayerComponent : public Component, public ICollision
+	class PlayerComponent : public CharacterComponent
 	{
 	public:
 		PlayerComponent() = default;
@@ -13,6 +15,7 @@ namespace jemgine
 
 		void Initialize() override;
 
+		virtual void OnNotify(const Event& event) override;
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 
@@ -20,6 +23,8 @@ namespace jemgine
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
-		float speed = 0.0f;
+		float jump = 30.0f;
+
+		// Inherited via CharacterComponent
 	};
 }

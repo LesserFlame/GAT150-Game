@@ -17,7 +17,18 @@ namespace jemgine
                     data.size = Vector2{ renderComponent->GetSource().w, renderComponent->GetSource().h };
                 }
             }
-            g_physicsSystem.SetCollisionBox(component->m_body, data, m_owner);
+
+            data.size = data.size * scale_offset * m_owner->m_transform.scale;
+
+            if (component->m_body->GetType() == b2_staticBody)
+            {
+                g_physicsSystem.SetCollisionBoxStatic(component->m_body, data, m_owner);
+            }
+            else
+            {
+                g_physicsSystem.SetCollisionBox(component->m_body, data, m_owner);
+            }
+
         }
     }
 
@@ -47,6 +58,8 @@ namespace jemgine
         READ_DATA(value, data.friction);
         READ_DATA(value, data.restitution);
         READ_DATA(value, data.is_trigger);
+        READ_DATA(value, scale_offset);
+
         return true;
     }
 

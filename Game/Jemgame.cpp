@@ -1,8 +1,11 @@
 #include "Jemgame.h"
 #include "Engine.h"
+#include "GameComponents/EnemyComponent.h"
+
 
 void Jemgame::Initialize()
 {
+	REGISTER_CLASS(EnemyComponent);
 	m_scene = std::make_unique<jemgine::Scene>();
 
 	rapidjson::Document document;
@@ -50,6 +53,13 @@ void Jemgame::Update()
 			actor->Initialize();
 			m_scene->Add(std::move(actor));
 		}
+		for (int i = 0; i < 3; i++)
+		{
+			auto actor = jemgine::Factory::Instance().Create<jemgine::Actor>("Fly");
+			actor->m_transform.position = { jemgine::randomf(0, 300), jemgine::randomf(0, 400) };
+			actor->Initialize();
+			m_scene->Add(std::move(actor));
+		}
 		for (int i = 0; i < 20; i++)
 		{
 			auto actor = jemgine::Factory::Instance().Create<jemgine::Actor>("Stone");
@@ -92,5 +102,12 @@ void Jemgame::OnAddPoints(const jemgine::Event& event)
 void Jemgame::OnPlayerDead(const jemgine::Event& event)
 {
 	m_gameState = gameState::playerDead;
+	m_stateTimer = 3.0f;
+}
+
+void Jemgame::OnNotify(const jemgine::Event& event)
+{
+	m_gameState = gameState::playerDead;
+	m_lives--;
 	m_stateTimer = 3.0f;
 }

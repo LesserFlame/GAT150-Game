@@ -120,14 +120,6 @@
                "num_rows":1,
                "start_frame":1,
                "end_frame":4
-            },
-            {
-               "type":"AudioComponent",
-               "sound_name":"audio/laser.wav",
-               "loop":true,
-               "pitch":2,
-               "volume":1,
-               "play_on_start":true
             }
          ]
       },

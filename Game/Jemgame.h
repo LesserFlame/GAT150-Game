@@ -2,7 +2,7 @@
 #include "Framework/Game.h"
 #include "Framework/Event.h"
 
-class Jemgame : public jemgine::Game
+class Jemgame : public jemgine::Game, public jemgine::INotify
 {
 public:
 	enum class gameState
@@ -26,4 +26,7 @@ private:
 	gameState m_gameState = gameState::titleScreen;
 	float m_stateTimer = 0;
 	int m_lives = 3;
+
+	// Inherited via INotify
+	virtual void OnNotify(const jemgine::Event& event) override;
 };
