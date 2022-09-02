@@ -38,7 +38,10 @@ namespace jemgine
 
     void CollisionComponent::OnCollisionEnter(Actor* other)
     {
-        if (m_enterFunction) m_enterFunction(other);
+        if(other)
+        { 
+            if (m_enterFunction) m_enterFunction(other);
+        }
     }
 
     void CollisionComponent::OnCollisionExit(Actor* other)

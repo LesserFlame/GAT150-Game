@@ -18,4 +18,6 @@ public:
 	virtual bool Read(const rapidjson::Value& value) override;
 
 protected:
+	bool isHit = false;
+	float damageCooldown = 0.0f;
 };

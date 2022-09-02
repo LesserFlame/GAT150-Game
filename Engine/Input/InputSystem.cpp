@@ -9,6 +9,7 @@ namespace jemgine
 	const uint32_t key_a = SDL_SCANCODE_A;
 	const uint32_t key_s = SDL_SCANCODE_S;
 	const uint32_t key_d = SDL_SCANCODE_D;
+	const uint32_t key_e = SDL_SCANCODE_E;
 	const uint32_t key_escape = SDL_SCANCODE_ESCAPE;
 
 	void InputSystem::Initialize()

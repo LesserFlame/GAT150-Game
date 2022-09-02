@@ -2,13 +2,204 @@
     "actors":[
         {
             "type":"Actor",
-            "name":"Coin",
-            "tag":"Pickup",
+            "name":"Player",
+            "tag":"Player",
+            "prefab":true,
+            "transform":{
+                "position":[
+                    430,
+                    300
+                ],
+                "scale":[
+                    2,
+                    2
+                ],
+                "rotation":0
+            },
+            "components":[
+                {
+                    "type":"PlayerComponent",
+                    "speed":10
+                },
+                {
+                    "type":"RBPhysicsComponent",
+                    "damping":1,
+                    "data.gravity_scale":1,
+                    "data.constrain_angle":true
+                },
+                {
+                    "type":"CollisionComponent",
+                    "data.friction":1,
+                    "data.restitution": 0.1
+                },
+                {
+                    "type":"SpriteAnimComponent",
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"run",
+                            "sequence.fps":12,
+                            "sequence.num_columns":6,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":6,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_run_anim_strip_6.png"
+                        },
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":4,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":4,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_idle_anim_strip_4.png"
+                        },
+                        {
+                            "sequence.name":"doublejump",
+                            "sequence.fps":12,
+                            "sequence.num_columns":3,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":3,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_jump_double_anim_strip_3.png"
+                        },
+                        {
+                            "sequence.name":"jump",
+                            "sequence.fps":12,
+                            "sequence.num_columns":3,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":3,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_jump_up_anim_strip_3.png"
+                        },
+                        {
+                            "sequence.name":"attack",
+                            "sequence.fps":12,
+                            "sequence.num_columns":4,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":4,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_attack_anim_strip_4(new).png"
+                        },
+                        {
+                            "sequence.name":"hit",
+                            "sequence.fps":12,
+                            "sequence.num_columns":3,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":3,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_hit_anim_strip_3.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"Actor",
+            "name":"PlayerDead",
+            "tag":"PlayerDead",
+            "lifespan":0.66,
             "prefab":true,
             "transform":{
                 "position":[
                     200,
                     200
+                ],
+                "scale":[
+                    2,
+                    2
+                ],
+                "rotation":0
+            },
+            "components":[
+                {
+                    "type":"RBPhysicsComponent",
+                    "damping":1,
+                    "data.gravity_scale":0,
+                    "data.constrain_angle":true
+                },
+                {
+                    "type":"CollisionComponent",
+                    "data.restitution":0.7,
+                    "data.is_trigger": true
+                },
+                {
+                    "type":"SpriteAnimComponent",
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":8,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":8,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/herochar_death_anim_strip_8.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"Actor",
+            "name":"Attack",
+            "tag":"Attack",
+            "lifespan":0.33,
+            "prefab":true,
+            "transform":{
+                "position":[
+                    200,
+                    200
+                ],
+                "scale":[
+                    2.4,
+                    2.4
+                ],
+                "rotation":0
+            },
+            "components":[
+                {
+                    "type":"RBPhysicsComponent",
+                    "damping":1,
+                    "data.gravity_scale":0,
+                    "data.constrain_angle":true
+                },
+                {
+                    "type":"CollisionComponent",
+                    "data.restitution":0.7,
+                    "data.is_trigger": true
+                },
+                {
+                    "type":"SpriteAnimComponent",
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":4,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":4,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/herochar sprites(new)/sword_effect_strip_4(new).png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"Actor",
+            "name":"Coin",
+            "tag":"Pickup",
+            "lifespan":10,
+            "prefab":true,
+            "transform":{
+                "position":[
+                    200,
+                    200
+                ],
+                "scale":[
+                    2,
+                    2
                 ],
                 "rotation":0
             },
@@ -25,12 +216,18 @@
                 },
                 {
                     "type":"SpriteAnimComponent",
-                    "texture_name":"Textures/platformer_metroidvania asset pack v1.01/miscellaneous sprites/coin_anim_strip_6.png",
-                    "fps":12,
-                    "num_columns":6,
-                    "num_rows":1,
-                    "start_frame":1,
-                    "end_frame":6
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":6,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":6,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/miscellaneous sprites/coin_anim_strip_6.png"
+                        }
+                    ]
                 }
             ]
         },
@@ -43,6 +240,10 @@
                 "position":[
                     500,
                     300
+                ],
+                "scale":[
+                    2,
+                    2
                 ],
                 "rotation":0
             },
@@ -70,24 +271,43 @@
                 },
                 {
                     "type":"SpriteAnimComponent",
-                    "texture_name":"Textures/platformer_metroidvania asset pack v1.01/enemies sprites/fly/blue_fly_idle_or_flying_anim_strip_3.png",
-                    "fps":12,
-                    "num_columns":3,
-                    "num_rows":1,
-                    "start_frame":1,
-                    "end_frame":3
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":3,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":3,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/enemies sprites/fly/blue_fly_idle_or_flying_anim_strip_3.png"
+                        },
+                        {
+                            "sequence.name":"hit",
+                            "sequence.fps":12,
+                            "sequence.num_columns":3,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":3,
+                            "texture_name":"Textures/platformer_metroidvania asset pack v1.01/enemies sprites/fly/blue_fly_hit_anim_strip_3.png"
+                        }
+                    ]
                 }
             ]
         },
         {
             "type":"Actor",
             "name":"Stone",
-            "tag":"Pickup",
+            "tag":"Ground",
             "prefab":true,
             "transform":{
                 "position":[
                     200,
                     200
+                ],
+                "scale":[
+                    2,
+                    2
                 ],
                 "rotation":0
             },

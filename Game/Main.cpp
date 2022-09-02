@@ -20,9 +20,9 @@ int main()
 
 	jemgine::Engine::Instance().Register();
 
-	jemgine::g_renderer.CreateWindow("EV3RY  BUDDY  'S FAVORITE [[Number 1 Rated Salesman1997]]", 800, 600);
+	jemgine::g_renderer.CreateWindow("Jemgame", 800, 600, false);
 	jemgine::g_renderer.SetClearColor(jemgine::Color{ 10, 10, 10, 255 });
-	std::cout << "HEY EVERY       !\nIT'S ME, SPAMTON G. SPAMTON!" << std::endl;
+	//std::cout << "HEY EVERY       !\nIT'S ME, SPAMTON G. SPAMTON!" << std::endl;
 
 	//create scene
 	std::unique_ptr<Jemgame> game = std::make_unique<Jemgame>();

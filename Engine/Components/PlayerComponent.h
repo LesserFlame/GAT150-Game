@@ -22,8 +22,21 @@ namespace jemgine
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		void SetAttack(bool attack = true) { isAttacking = attack; }
+
 	public:
-		float jump = 30.0f;
+		bool facingLeft = false;
+
+		bool isAttacking = false;
+		float attackCooldown = 0.0f;
+
+		bool isHit = false;
+		float damageCooldown = 0.0f;
+
+		int m_groundCount = 0;
+		bool doubleJump = true;
+
+		float jump = 250.0f;
 
 		// Inherited via CharacterComponent
 	};

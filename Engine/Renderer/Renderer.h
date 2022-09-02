@@ -1,6 +1,7 @@
 #pragma once
-#include "../Math/Vector2.h"
-#include "../Math/Color.h"
+#include "Math/Vector2.h"
+#include "Math/Color.h"
+#include "Math/Matrix3x3.h"
 //#include "Texture.h"
 //#include <SDL.h>
 
@@ -21,7 +22,7 @@ namespace jemgine
 
 		void Initialize();
 		void Shutdown();
-		void CreateWindow(const char* name, int width, int height);	
+		void CreateWindow(const char* name, int width, int height, bool full = false);	
 		void BeginFrame();
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_clearColor = color; }
@@ -37,6 +38,10 @@ namespace jemgine
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height; }
 
+		void SetViewMatrix(const Matrix3x3& view) { m_view = view; }
+		void SetViewportMatrix(const Matrix3x3& viewport) { m_viewport = viewport; }
+
+
 	private:
 		int  m_width = 0;
 		int  m_height = 0;
@@ -44,6 +49,9 @@ namespace jemgine
 
 		SDL_Renderer* m_renderer = nullptr;
 		SDL_Window* m_window = nullptr;
+
+		Matrix3x3 m_view;
+		Matrix3x3 m_viewport;
 
 		friend class Text;
 		friend class Texture;

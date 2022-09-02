@@ -17,6 +17,7 @@
 #include "Framework/Factory.h"
 #include "Framework/EventManager.h"
 
+#include "Components/CameraComponent.h"
 #include "Components/CharacterComponent.h"
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"

@@ -58,10 +58,10 @@ namespace jemgine
 
 		bool active = true;
 		bool destroy = false;
+		float lifespan = 0;
 		//physics
 		Vector2 m_velocity;
 		float m_damping = 1;
-		
 
 		Scene* m_scene = nullptr;
 		Actor* m_parent = nullptr;
